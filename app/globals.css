@@ -11,7 +11,8 @@
   font-family: "Manrope", sans-serif;
 }
 
-/* General styles */
+/* General */
+
 .max-width {
   @apply max-w-[1440px] mx-auto;
 }
@@ -36,7 +37,7 @@
   @apply flex flex-row relative justify-center items-center py-3 px-6 outline-none;
 }
 
-/* Hero styles */
+/* Hero Section */
 .hero {
   @apply flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px] mx-auto;
 }
@@ -59,4 +60,14 @@
 
 .hero__image-overlay {
   @apply absolute xl:-top-24 xl:-right-1/2 -right-1/4 bg-hero-bg bg-repeat-round -z-10 w-full xl:h-screen h-[590px] overflow-hidden;
+}
+
+/* Footer */
+
+.footer {
+  @apply flex flex-col text-black-100  mt-5 border-t border-gray-100;
+}
+
+.footer__about, .footer__partner {
+  @apply flex flex-col gap-2 text-base min-w-[170px];
 }
