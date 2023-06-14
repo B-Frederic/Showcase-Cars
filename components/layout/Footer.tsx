@@ -23,9 +23,9 @@ const Footer = () => {
                 </div>
                 <div className="footer__partner">
                     <h3 className="font-bold text-xl">Nos partenaires</h3>
-                    <p>Boutique de Luxe</p>
-                    <p>Le bien-être</p>
-                    <p>Makeup ENG</p>
+                    <p>Uber Cars</p>
+                    <p>Toyota</p>
+                    <p>Cars</p>
                 </div>
             </div>
         </footer>
