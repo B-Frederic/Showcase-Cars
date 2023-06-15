@@ -48,7 +48,7 @@ const CarCard = ({ car }: CarCardProps) => {
                     </div>
                     <div className="car-card__icon">
                         <Image src="/gas.svg" width={20} height={20} alt="seat" />
-                        <p className="car-card__icon-text">{city_mpg * 3.78} Litres</p>
+                        <p className="car-card__icon-text">{city_mpg} MGP</p>
                     </div>
                 </div>
                 <div className="car-card__btn-container">
