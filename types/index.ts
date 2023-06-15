@@ -23,6 +23,20 @@ export interface FilterProps {
     fuel?: string;
 }
 
+export interface HomeProps {
+    searchParams: FilterProps;
+}
+
+export interface OptionProps {
+    title: string;
+    value: string;
+}
+
+export interface CustomFilterProps {
+    title: string;
+    options: OptionProps[];
+}
+
 export interface CarProps {
     city_mpg: number;
     class: string;
@@ -36,4 +50,9 @@ export interface CarProps {
     model: string;
     transmission: string;
     year: number;
+}
+
+export interface ShowMoreProps {
+    pageNumber: number;
+    isNext: boolean;
 }
