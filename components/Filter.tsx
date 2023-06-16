@@ -2,7 +2,6 @@
 import { Fragment, useState } from "react";
 // Next
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 // Headlessui
 import { Listbox, Transition } from "@headlessui/react";
 // Types
@@ -10,16 +9,9 @@ import { CustomFilterProps } from "@/types";
 // Utils
 import { updateSearchParams } from "@/utils";
 
-export default function Filter({ title, options }: CustomFilterProps) {
+export default function Filter({ title, options, setFilter }: CustomFilterProps) {
 
-  const router = useRouter();
   const [selected, setSelected] = useState(options[0]);
-
-  const handleUpdateParams = (event: { title: string; value: string }) => {
-    const newPathName = updateSearchParams(title, event.value.toLowerCase());
-
-    router.push(newPathName);
-  };
 
   return (
     <div className='w-fit'>
@@ -27,7 +19,7 @@ export default function Filter({ title, options }: CustomFilterProps) {
         value={selected}
         onChange={(event) => {
           setSelected(event);
-          handleUpdateParams(event);
+          setFilter(event.value);
         }}
       >
         <div className='relative w-fit z-10'>

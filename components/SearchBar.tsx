@@ -1,79 +1,47 @@
 "use client";
 import React, { useState } from "react";
-// Next
-import { useRouter } from "next/navigation";
 // Components
 import SearchManufacturer from "./SearchManufacturer";
 // Picture
 import Image from "next/image";
 
-const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
-  <button type="submit" className={`-ml-3 z-10 ${otherClasses}`}>
-    <Image
-      src={"/magnifying-glass.svg"}
-      alt={"magnifying glass"}
-      width={40}
-      height={40}
-      className="object-contain"
-    />
-  </button>
-);
 
-const SearchBar = () => {
+const SearchBar = ({ setManufacturer, setModel }) => {
 
-  const [manufacturer, setManufacturer] = useState("");
-  const [model, setModel] = useState("");
-  const router = useRouter();
+  const [searchManufacturer, setSearchManufacturer] = useState("");
+  const [searchModel, setSearchModel] = useState("");
 
-  const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-    if (manufacturer.trim() === "" && model.trim() === "") {
+    if (searchManufacturer.trim() === "" && searchModel.trim() === "") {
       return alert("Champ vide");
     }
 
-    updateSearchParams(model.toLowerCase(), manufacturer.toLowerCase());
+    setModel(searchModel), setManufacturer(searchManufacturer);
   };
 
-  const updateSearchParams = (model: string, manufacturer: string) => {
-
-    const searchParams = new URLSearchParams(window.location.search);
-
-    if (model) {
-      searchParams.set("model", model);
-    } else {
-      searchParams.delete("model");
-    }
-
-    if (manufacturer) {
-      searchParams.set("manufacturer", manufacturer);
-    } else {
-       searchParams.delete("manufacturer");
-    }
-
-    const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
-
-    router.push(newPathname);
-  };
 
   return (
     <form className="searchbar" onSubmit={handleSearch}>
       <div className="searchbar__items">
-        <SearchManufacturer manufacturer={manufacturer} setManufacturer={setManufacturer} />
+        <SearchManufacturer selected={searchManufacturer} 
+        setSelected={setSearchManufacturer} />
       </div>
       <div className="searchbar__item">
         <Image
           src="/model-icon.png"
           width={25}
           height={25}
+          sizes=""
           className="absolute w-[20px] h-[20px] ml-4"
           alt="voiture model"
         />
         <input
           type="text"
           name="model"
-          value={model}
-          onChange={(event) => setModel(event.target.value)}
+          value={searchModel}
+          onChange={(event) => setSearchModel(event.target.value)}
           placeholder="Tiguan..."
           className="searchbar__input"
         />

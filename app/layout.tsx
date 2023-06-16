@@ -1,10 +1,7 @@
 import './globals.css';
-import { Inter } from 'next/font/google';
 // Components
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Location de voiture',
@@ -18,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <body className="relative">
+      <body className="relative" suppressHydrationWarning={true} >
         <Header />
           {children}
         <Footer />
