@@ -6,12 +6,11 @@ import Image from "next/image";
 import { Listbox, Transition } from "@headlessui/react";
 // Types
 import { CustomFilterProps } from "@/types";
-// Utils
-import { updateSearchParams } from "@/utils";
+
 
 export default function Filter({ title, options, setFilter }: CustomFilterProps) {
 
-  const [selected, setSelected] = useState(options[0]);
+  const [selected, setSelected] = useState(options[0]);  
 
   return (
     <div className='w-fit'>

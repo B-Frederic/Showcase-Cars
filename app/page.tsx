@@ -58,7 +58,7 @@ export default function Home() {
       
       <div className="mt-12 padding-x padding-y max-width" id="discover">
         <div className="home__text-container">
-            <h2 className="text-4xl font-extrabold">Catalogue voitures</h2>
+            <h2 className="text-4xl font-extrabold">Catalogue des voitures</h2>
             <p>Trouver la voiture de vos rêves sans plus attendre</p>
         </div>
 
