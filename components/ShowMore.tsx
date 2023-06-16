@@ -1,25 +1,17 @@
 "use client";
-// Next
-import { useRouter } from "next/navigation";
 // Types
 import { ShowMoreProps } from "@/types";
-// Utils
-import { updateSearchParams } from "@/utils";
 // Components
 import Button from "./Button";
 
 
-const ShowMore = ({ pageNumber, isNext }: ShowMoreProps) => {
-
-  const router = useRouter();
+const ShowMore = ({ pageNumber, isNext, setLimit }: ShowMoreProps) => {
 
   const handleNavigation = () => {
 
     const newLimit = (pageNumber + 1) * 10;
 
-    const newPathname = updateSearchParams("limit", `${newLimit}`);
-    
-    router.push(newPathname);
+    setLimit(newLimit);
   };
 
   return (
@@ -27,7 +19,7 @@ const ShowMore = ({ pageNumber, isNext }: ShowMoreProps) => {
       {!isNext && (
         <Button
           btnType="button"
-          title="En afficher 10 de plus"
+          title="Afficher davantage"
           containerStyles="bg-primary-blue rounded-full text-white"
           handleClick={handleNavigation}
         />
