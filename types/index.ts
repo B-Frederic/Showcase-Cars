@@ -8,7 +8,6 @@ export interface ButtonProps {
     title: string;
     rightIcon?: string;
     handleClick?: MouseEventHandler<HTMLButtonElement>;
-    id: string;
 }
 
 export interface SearchManufacturerProps {

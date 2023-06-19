@@ -12,7 +12,7 @@ const Hero = () => {
         if (target) {
           target.scrollIntoView({ behavior: "smooth" });
         }
-      };
+    };
 
     return (
         <div className="hero">
@@ -21,7 +21,6 @@ const Hero = () => {
                 <p className="hero__subtitle">Votre expérience de location de véhicule ne serra plus jamais la même après votre passage chez nous.</p>
                 <Button 
                 title="Voir nos voitures"
-                id="catalogue"
                 containerStyles="bg-primary-blue text-white rounded-full mt-10"
                 handleClick={handleScroll}
                 />

@@ -1,5 +1,7 @@
 "use client";
 import Image from "next/image";
+// React cions
+import { AiOutlineArrowUp } from "react-icons/ai";
 // Components
 import Hero from '@/components/Hero'
 import SearchBar from "@/components/SearchBar";
@@ -51,6 +53,31 @@ export default function Home() {
     getCars();
   }, [fuel, year, limit, manufacturer, model])
 
+  // Scroll event
+  const [scrolling, setScrolling] = useState(false);
+  const [scrollTop, setScrollTop] = useState(0);
+
+  useEffect(() => {
+
+    const onScroll = (event) => {
+      setScrollTop(event.target.documentElement.scrollTop);
+      setScrolling(event.target.documentElement.scrollTop > 1400);
+    };
+
+    window.addEventListener("scroll", onScroll);
+
+    return () => window.removeEventListener("scroll", onScroll);
+
+  }, [scrollTop]);
+
+  const handleScroll = () => {
+    const target = document.getElementById("discover");
+
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
 
   return (
     <main className="overflow-hidden">
@@ -100,6 +127,11 @@ export default function Home() {
           <h2 className='my-[150px] text-center text-black text-xl font-bold'>Désolé, il n'y a aucun résultat correspondant pour cette recherche.</h2>
         </div>
       )}
+      {
+        scrolling && (
+          <div className="lg:hidden fixed right-2 bottom-2 w-[40px] h-[40px] rounded-full flex items-center justify-center opacity-[0.7] bg-blue-600 text-xl"><AiOutlineArrowUp className="text-white" onClick={handleScroll} /></div>
+        )
+      }
     </main>
   )
 }
