@@ -20,7 +20,7 @@ export default function Home() {
   const [model, setModel] = useState("");
   const [fuel, setFuel] = useState("");
   const [year, setYear] = useState(2022);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(12);
 
   const getCars = async () => {
 
@@ -31,7 +31,7 @@ export default function Home() {
         manufacturer: manufacturer || "",
         year: year || 2022,
         fuel: fuel || "",
-        limit: limit || 10,
+        limit: limit || 12,
         model: model || "",
       }); 
 
@@ -55,13 +55,11 @@ export default function Home() {
   return (
     <main className="overflow-hidden">
       <Hero />
-      
       <div className="mt-12 padding-x padding-y max-width" id="discover">
         <div className="home__text-container">
             <h2 className="text-4xl font-extrabold">Catalogue des voitures</h2>
             <p>Trouver la voiture de vos rêves sans plus attendre</p>
         </div>
-
         <div className="home__filters">
             <SearchBar setManufacturer={setManufacturer} setModel={setModel} />
             <div className="home__filter-container">
@@ -70,7 +68,6 @@ export default function Home() {
             </div>
         </div>
       </div>
-
       {allCars.length > 0 ? (
         <section>
           <div className='home__cars-wrapper'>
@@ -78,7 +75,6 @@ export default function Home() {
               <CarCard key={index} car={car} />
             ))}
           </div>
-
           {
             loading && (
               <div className="mt-16 w-full flex-center">
@@ -93,20 +89,17 @@ export default function Home() {
               </div>
             )
           }
-
           <ShowMore
-            pageNumber={limit / 10}
+            pageNumber={limit / 12}
             isNext={limit > allCars.length}
             setLimit={setLimit}
           />
         </section>
       ) : (
         <div className='home__error-container'>
-          <h2 className='text-black text-xl font-bold'>Désolé, aucun résultat</h2>
-          <p>{allCars?.message}</p>
+          <h2 className='my-[150px] text-center text-black text-xl font-bold'>Désolé, il n'y a aucun résultat correspondant pour cette recherche.</h2>
         </div>
       )}
-
     </main>
   )
 }

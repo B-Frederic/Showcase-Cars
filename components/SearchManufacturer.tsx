@@ -10,17 +10,20 @@ import Image from "next/image";
 import { manufacturers } from "../constants/data";
 
 const SearchManufacturer = ({ selected, setSelected }: SearchManufacturerProps) => {
+
   const [query, setQuery] = useState("");
 
   const filteredManufacturers =
     query === ""
       ? manufacturers
-      : manufacturers.filter((item) =>
-          item
-            .toLowerCase()
-            .replace(/\s+/g, "")
-            .includes(query.toLowerCase().replace(/\s+/g, ""))
-        );
+      : manufacturers.filter((item) =>{
+        
+      item
+      .toLowerCase()
+      .replace(/\s+/g, "")
+      .includes(query.toLowerCase().replace(/\s+/g, ""))      
+      });
+      
 
   return (
     <div className="search-manufacturer">
@@ -57,14 +60,14 @@ const SearchManufacturer = ({ selected, setSelected }: SearchManufacturerProps) 
                   value={query}
                   className="search-manufacturer__option"
                 >
-                  Créer "{query}"
+                {query}
                 </Combobox.Option>
               ) : (
-                filteredManufacturers.map((item) => (
+                filteredManufacturers.map((item, index) => (
                   <Combobox.Option
-                    key={item}
+                    key={index}
                     className={({ active }) =>
-                      `relative search-manufacturer__option ${
+                    `relative search-manufacturer__option ${
                         active ? "bg-primary-blue text-white" : "text-gray-900"
                       }`
                     }

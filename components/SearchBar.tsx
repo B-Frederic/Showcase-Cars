@@ -11,8 +11,8 @@ const SearchBar = ({ setManufacturer, setModel }) => {
   const [searchManufacturer, setSearchManufacturer] = useState("");
   const [searchModel, setSearchModel] = useState("");
 
-  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     if (searchManufacturer.trim() === "" && searchModel.trim() === "") {
       return alert("Champ vide");
