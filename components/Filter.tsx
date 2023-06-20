@@ -21,7 +21,7 @@ export default function Filter({ title, options, setFilter }: CustomFilterProps)
           setFilter(event.value);
         }}
       >
-        <div className='relative w-fit z-20'>
+        <div className='relative w-fit'>
           <Listbox.Button className='custom-filter__btn'>
             <span className='block truncate'>{selected.title}</span>
             <Image src='/chevron-up-down.svg' width={20} height={20} className='ml-4 object-contain' alt='chevron_up-down' />
