@@ -1,33 +1,38 @@
 "use client";
+// React
 import React, { useState } from "react";
-// Components
-import SearchManufacturer from "./SearchManufacturer";
+// React Icons
+import { ImCross } from "react-icons/im";
 // Picture
 import Image from "next/image";
+// Types
+import { CustomFilterProps } from "@/types";
 
 
-const SearchBar = ({ setManufacturer, setModel }) => {
 
-  const [searchManufacturer, setSearchManufacturer] = useState("");
+const SearchBar = ({ setModel }: CustomFilterProps) => {
+
   const [searchModel, setSearchModel] = useState("");
+
 
   const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (searchManufacturer.trim() === "" && searchModel.trim() === "") {
+    if (searchModel.trim() === "") {
       return alert("Champ vide");
     }
 
-    setModel(searchModel), setManufacturer(searchManufacturer);
+    setModel(searchModel)
   };
+
+  const handleResetSearchModel = () => {
+    setSearchModel("");
+    setModel("");
+  }
 
 
   return (
     <form className="searchbar" onSubmit={handleSearch}>
-      <div className="searchbar__items">
-        <SearchManufacturer selected={searchManufacturer} 
-        setSelected={setSearchManufacturer} />
-      </div>
       <div className="searchbar__item">
         <Image
           src="/model-icon.png"
@@ -42,11 +47,16 @@ const SearchBar = ({ setManufacturer, setModel }) => {
           name="model"
           value={searchModel}
           onChange={(event) => setSearchModel(event.target.value)}
-          placeholder="Tiguan..."
+          placeholder="Model..."
           className="searchbar__input"
         />
+        {
+          searchModel && (
+              <p className="absolute right-4 text-red-500 lg:hover:text-lg lg:cursor-pointer" onClick={handleResetSearchModel}><ImCross /></p>
+          )
+        }
       </div>
-      <button type="submit" className="h-[48px] outline bg-primary-blue rounded-full text-white my-2 px-4 py-1 ">Rechercher</button>
+      <button type="submit" className="h-[48px] outline bg-primary-blue rounded-r-full text-white my-2 px-4 py-1">Go</button>
     </form>
   );
 };

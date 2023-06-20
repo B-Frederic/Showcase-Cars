@@ -1,6 +1,8 @@
 "use client";
 import Image from "next/image";
-// React cions
+// React
+import { useEffect, useState } from "react";
+// React icons
 import { AiOutlineArrowUp } from "react-icons/ai";
 // Components
 import Hero from '@/components/Hero'
@@ -11,8 +13,7 @@ import ShowMore from "@/components/ShowMore";
 // Utils
 import { fetchCars } from "@/utils";
 // Data
-import { fuels, yearsOfProduction } from "@/constants/data";
-import { useEffect, useState } from "react";
+import { fuels, manufacturers, yearsOfProduction } from "@/constants/data";
 
 export default function Home() {
 
@@ -23,8 +24,9 @@ export default function Home() {
   const [fuel, setFuel] = useState("");
   const [year, setYear] = useState(2022);
   const [limit, setLimit] = useState(12);
+  const [car, setCar] = useState("");
 
-  const getCars = async () => {
+  const getCars = async () => {    
 
     setLoading(true);
 
@@ -35,6 +37,7 @@ export default function Home() {
         fuel: fuel || "",
         limit: limit || 12,
         model: model || "",
+        car: car || "",
       }); 
 
       setAllCars(result);
@@ -51,7 +54,7 @@ export default function Home() {
   
   useEffect(() => {
     getCars();
-  }, [fuel, year, limit, manufacturer, model])
+  }, [fuel, year, limit, manufacturer, model, car])
 
   // Scroll event
   const [scrolling, setScrolling] = useState(false);
@@ -70,6 +73,7 @@ export default function Home() {
 
   }, [scrollTop]);
 
+  // Target "Catalogue"
   const handleScroll = () => {
     const target = document.getElementById("discover");
 
@@ -88,10 +92,24 @@ export default function Home() {
             <p>Trouver la voiture de vos rêves sans plus attendre</p>
         </div>
         <div className="home__filters">
-            <SearchBar setManufacturer={setManufacturer} setModel={setModel} />
-            <div className="home__filter-container">
-                <Filter title="fuel" setFilter={setFuel} options={fuels} />
-                <Filter title="year" setFilter={setYear} options={yearsOfProduction} />
+            <div className="flex items-center justify-center max-lg:flex-col">
+              <div className="flex items-center mx-2">
+                <SearchBar setManufacturer={setManufacturer} setModel={setModel} />
+              </div>
+              <div className="flex max-md:flex-col max-md:my-4 max-lg:mt-4 ">
+                <div className="z-50 flex items-center mx-2 max-md:my-2 max-md:w-[250px] max-md:justify-between">
+                  <p className="mr-2 font-semibold">Marque :</p>
+                  <Filter title="car" setFilter={setCar} options={manufacturers} />
+                </div>
+                <div className="z-40 flex items-center mx-2 max-md:my-2 max-md:w-[250px] max-md:justify-between">
+                  <p className="mr-2 font-semibold">Carburant :</p>
+                  <Filter title="fuel" setFilter={setFuel} options={fuels} />
+                </div>
+                <div className="z-30 flex items-center mx-2 max-md:my-2 max-md:w-[250px] max-md:justify-between">
+                  <p className="mr-2 font-semibold">Année :</p>
+                  <Filter title="year" setFilter={setYear} options={yearsOfProduction} />
+                </div>
+              </div>
             </div>
         </div>
       </div>

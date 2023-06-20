@@ -17,7 +17,7 @@
 }
 
 .padding-x {
-  @apply sm:px-16 px-6;
+  @apply sm:px-4 px-6;
 }
 
 .padding-y {
@@ -69,11 +69,7 @@
 }
 
 .home__filters {
-  @apply mt-12 w-full flex-between items-center flex-wrap gap-5;
-}
-
-.home__filter-container {
-  @apply flex justify-start flex-wrap items-center gap-2;
+  @apply mt-12 w-full items-center flex-wrap;
 }
 
 .home__cars-wrapper {
@@ -187,11 +183,11 @@
 
 /* Searchbar */
 .searchbar {
-  @apply flex items-center justify-start max-sm:flex-col w-full relative max-sm:gap-4 max-w-3xl;
+  @apply flex items-center relative max-w-3xl;
 }
 
 .searchbar__items {
-  @apply w-[300px] bg-gray-200 rounded-l-full max-sm:rounded-full;
+  @apply w-[300px] bg-gray-200 rounded-l-full;
 }
 
 .searchbar__item {
@@ -199,7 +195,7 @@
 }
 
 .searchbar__input {
-  @apply w-[300px] h-[48px] pl-12 p-4 bg-gray-200 rounded-r-full max-sm:rounded-full outline-none cursor-pointer text-sm;
+  @apply w-[220px] h-[48px] pl-12 p-4 bg-gray-200 rounded-l-full outline-none cursor-pointer text-sm;
 }
 
 
